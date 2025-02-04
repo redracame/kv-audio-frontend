@@ -1,0 +1,38 @@
+/* Style the product card container */
+div {
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    background: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style the product image */
+  img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+  }
+  
+  /* Style the product name */
+  span:first-of-type {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style the price */
+  span:last-of-type {
+    font-size: 18px;
+    color: #e63946;
+    font-weight: bold;
+  }
+  
+  /* Remove unnecessary h1 styling */
+  h1 {
+    display: none;
+  }
+  
