@@ -4,12 +4,16 @@ function App(){
   
 
   return (
-    <>
-      <ProductCard  name="Coca Cola" price="500/-" description="Enjoy your life with Cola" photourl="https://i.pinimg.com/736x/30/05/43/3005433c9b11529efb3915747a00f4c5.jpg"/> 
-   
-      <ProductCard name="Besues Hedaphone" price="10500/-" description="Baseus H1i Headphones Earphones 5.3 Stereo HiFi Music with Rotating Noise-Cancelling Microphone Sports Gaming Headset" photourl="https://h6q4c9n2.delivery.rocketcdn.me/wp-content/uploads/2024/04/Baseus-Bowie-H1-Pro-Noise-Cancellation-Wireless-Headphones-baseuscolombo-5.jpg"/>
-   
-    </>
+    
+    < div> 
+    <div className='w-[180px] h-[350px] bg-blue-200'>
+    <div className='w-[50px] h-[50px] bg-red-500'></div>
+    <div className='w-[50px] h-[50px] bg-green-500 '></div>
+    <div className='w-[50px] h-[50px] bg-yellow-500 fixed right-[5px]'></div>
+    </div>
+
+
+    </div>
 
   )
 }
