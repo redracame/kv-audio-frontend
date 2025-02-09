@@ -26,8 +26,7 @@ export default function AdminPage(){
        </button>
        </div>
     
-       <div className="w-full bg-red-900">
-       
+       <div className="w-[calc(100vw-400px)] bg-blue-900">
         
        </div>
       </div>

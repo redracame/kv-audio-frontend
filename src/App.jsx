@@ -1,18 +1,17 @@
 import './App.css'
-import ProductCard from './components/productCard'
-import { BsGraphDown } from "react-icons/bs";
-import { FaRegBookmark } from "react-icons/fa";
-import { MdOutlineSpeaker } from "react-icons/md";
-import { FaRegUser } from "react-icons/fa";
 import AdminPage from './components/adminPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App(){
   
 
   return (
-    <div>
-     <AdminPage/>
-    </div>
-
+    <BrowserRouter>
+   <Routes path="/*">
+        <Route path='/admin/*' element={<AdminPage/>}/>
+        <Route path='/' element={<h1>Home</h1>}/>
+        <Route path="/*" element={<h1>Not Found</h1>}/>
+   </Routes>
+    </BrowserRouter>
 
   );
 }
