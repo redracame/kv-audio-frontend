@@ -1,5 +1,7 @@
+import axios from "axios";
 import "./login.css";
 import { useState } from "react";
+import { GiConsoleController } from "react-icons/gi";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -8,6 +10,18 @@ export default function LoginPage() {
   function handleOneSubmit(e){
     e.preventDefault()
     console.log(email, password)
+
+    axios.post("http://localhost:3000/api/Users/login" ,
+    {
+       email : email,
+       password : password
+    }
+    ).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
+
    }
 
   return (
