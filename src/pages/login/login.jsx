@@ -2,6 +2,7 @@ import axios from "axios";
 import "./login.css";
 import { useState } from "react";
 import { GiConsoleController } from "react-icons/gi";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -18,8 +19,10 @@ export default function LoginPage() {
     }
     ).then((res)=>{
       console.log(res)
+      toast.success("Login Success")
     }).catch((err)=>{
       console.log(err)
+      toast.error(err.response.data.error)
     })
 
    }
