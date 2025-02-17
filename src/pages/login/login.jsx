@@ -3,10 +3,12 @@ import "./login.css";
 import { useState } from "react";
 import { GiConsoleController } from "react-icons/gi";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   function handleOneSubmit(e){
     e.preventDefault()
@@ -23,9 +25,10 @@ export default function LoginPage() {
       const user = res.data.user
        
       if(user.role === "admin"){
-        window.location.href = "/admin"
+         navigate("/admin/")
+
       }else{
-        window.location.href = "/"
+        navigate("/")
       }
 
 
