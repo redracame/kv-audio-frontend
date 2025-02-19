@@ -94,7 +94,7 @@ export default function AddItemPage() {
                     className="border p-2 w-full"
                 />
                 <button onClick={handleAddItem} className="bg-blue-500 text-white p-2 w-full rounded">Add</button>
-                <button className="bg-red-500 text-white p-2 w-full rounded">Cancel</button>
+                <button onClick={()=>{ navigate("/admin/items")}} className="bg-red-500 text-white p-2 w-full rounded">Cancel</button>
             </div>
         </div>
     );
