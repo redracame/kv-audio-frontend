@@ -58,15 +58,18 @@ import { Link } from "react-router-dom";
 export default function AdminItemsPage(){
   const[items,setItems]= useState(sampleArr)
 
-      const token = localStorage.getItem("token");
+  useEffect(()=>{
+
+
+  const token = localStorage.getItem("token");
       axios.get("http://localhost :3000/api/products",{headers:{"Authorization" : `Bearer ${token}` }}).then((res)=> {
         console.log(res.data)
-        //setItems(res.data)
+        setItems(res.data)
       }).catch((err)=>{
            console.log(err)
       })
     
-
+    },[])
 
       return(
         <div
