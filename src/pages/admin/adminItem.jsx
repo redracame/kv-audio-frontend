@@ -58,57 +58,63 @@ export default function AdminItemsPage() {
     if (window.confirm("Are you sure you want to delete this item?")) {
       setItems(items.filter((item) => item.key !== key));
       const token = localStorage.getItem("token");
-      axios.delete(`http://localhost:3000/api/products/$(key)`, {
-         headers: {Authorization: `Bearer ${token}`},
-      }).then(
-            (res) => {
-                console.log(res.data);
-                window.location.reload();
-            }
-      ).catch(
-        (err) => {
+      axios
+        .delete(`http://localhost:3000/api/products/${key}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload();
+        })
+        .catch((err) => {
           console.error(err);
-        }
-      )
-      }
-    
+        });
+    }
   };
 
   return (
-    <div className="p-5">
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-300 bg-white shadow-md rounded-lg">
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold mb-4 text-gray-800">Manage Products</h1>
+      <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+        <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gray-800 text-white">
-              <th className="p-3 border">Key</th>
-              <th className="p-3 border">Name</th>
-              <th className="p-3 border">Price</th>
-              <th className="p-3 border">Category</th>
-              <th className="p-3 border">Dimensions</th>
-              <th className="p-3 border">Availability</th>
-              <th className="p-3 border">Actions</th>
+            <tr className="bg-blue-600 text-white text-left">
+              <th className="p-4">Key</th>
+              <th className="p-4">Name</th>
+              <th className="p-4">Price</th>
+              <th className="p-4">Category</th>
+              <th className="p-4">Dimensions</th>
+              <th className="p-4">Availability</th>
+              <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
             {items.map((product) => (
-              <tr key={product.key} className="text-center border hover:bg-gray-100 transition">
-                <td className="p-3 border">{product.key}</td>
-                <td className="p-3 border">{product.name}</td>
-                <td className="p-3 border">${product.price}</td>
-                <td className="p-3 border">{product.category}</td>
-                <td className="p-3 border">{product.dimensions}</td>
-                <td className="p-3 border">
-                  <span className={`px-2 py-1 rounded text-white ${product.availability === "In Stock" ? "bg-green-500" : "bg-red-500"}`}>
+              <tr key={product.key} className="border-b hover:bg-gray-100">
+                <td className="p-4">{product.key}</td>
+                <td className="p-4 font-medium">{product.name}</td>
+                <td className="p-4">${product.price}</td>
+                <td className="p-4">{product.category}</td>
+                <td className="p-4">{product.dimensions}</td>
+                <td className="p-4">
+                  <span
+                    className={`px-2 py-1 rounded text-white ${
+                      product.availability === "In Stock" ? "bg-green-500" : "bg-red-500"
+                    }`}
+                  >
                     {product.availability}
                   </span>
                 </td>
-                <td className="p-3 border flex justify-center gap-3">
-                  <Link to={`/admin/items/edit/${product.key}`} className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded">
+                <td className="p-4 flex gap-3">
+                  <Link
+                    to={`/admin/items/edit/${product.key}`}
+                    className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded"
+                  >
                     Edit
                   </Link>
                   <button
                     onClick={() => handleDelete(product.key)}
-                    className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded"
+                    className="bg-red-500 hover:bg-red-700 text-white px-4 py-1 rounded"
                   >
                     Delete
                   </button>
@@ -118,9 +124,8 @@ export default function AdminItemsPage() {
           </tbody>
         </table>
       </div>
-
       <Link to="/admin/items/add">
-        <CiCirclePlus className="text-[100px] fixed bottom-5 right-5 text-green-600 hover:text-green-800 cursor-pointer transition" />
+        <CiCirclePlus className="text-[80px] fixed bottom-6 right-6 text-green-600 hover:text-green-800 cursor-pointer transition transform hover:scale-110" />
       </Link>
     </div>
   );
