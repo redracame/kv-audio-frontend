@@ -74,7 +74,7 @@ export default function AdminItemsPage(){
                         items.map((product)=>{
                            console.log(product)
                            return (
-                             <tr>
+                             <tr key={product.key}>
                                 <td>{product.key}</td>
                                 <td>{product.name}</td>
                                 <td>{product.name}</td>
