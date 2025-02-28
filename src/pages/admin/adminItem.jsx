@@ -41,18 +41,23 @@ export default function AdminItemsPage() {
   const [itemsLoaded , setItemsLoaded] = useState(false);
   
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get("http://localhost:3000/api/products", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log("Fetched Data:", res.data);
-        setItems(res.data);
-      })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-      });
+
+    if(!itemsLoaded){
+      const token = localStorage.getItem("token");
+      axios
+        .get("http://localhost:3000/api/products", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log("Fetched Data:", res.data);
+          setItems(res.data);
+          setItemsLoaded(true);
+        })
+        .catch((err) => {
+          console.error("Error fetching products:", err);
+        });
+    }
+    
   }, [itemsLoaded]);
 
   const handleDelete = (key) => {
@@ -65,7 +70,7 @@ export default function AdminItemsPage() {
         })
         .then((res) => {
           console.log(res.data);
-          setItemsLoaded(itemsLoaded);
+          setItemsLoaded(false);
         })
         .catch((err) => {
           console.error(err);
