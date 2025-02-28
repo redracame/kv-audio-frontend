@@ -38,6 +38,7 @@ const sampleArr = [
 
 export default function AdminItemsPage() {
   const [items, setItems] = useState(sampleArr);
+  const [itemsLoaded , setItemsLoaded] = useState(false);
   
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -52,7 +53,7 @@ export default function AdminItemsPage() {
       .catch((err) => {
         console.error("Error fetching products:", err);
       });
-  }, []);
+  }, [itemsLoaded]);
 
   const handleDelete = (key) => {
     if (window.confirm("Are you sure you want to delete this item?")) {
@@ -64,7 +65,7 @@ export default function AdminItemsPage() {
         })
         .then((res) => {
           console.log(res.data);
-          window.location.reload();
+          setItemsLoaded(itemsLoaded);
         })
         .catch((err) => {
           console.error(err);
