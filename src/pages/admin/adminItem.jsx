@@ -79,8 +79,9 @@ export default function AdminItemsPage() {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4 text-gray-800">Manage Products</h1>
+    <div className="w-full p-4 relative flex justify-center items-center flex-col">
+      {!itemsLoaded &&<div className="border-4 my-4 border-b-green-500 rounded-full animate-spin w-[100px] h-[100px]"></div>}
+      {itemsLoaded && <div className="overflow-x-auto"></div>}
       <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
         <table className="w-full border-collapse">
           <thead>
