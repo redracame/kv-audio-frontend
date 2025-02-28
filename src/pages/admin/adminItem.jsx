@@ -116,7 +116,7 @@ export default function AdminItemsPage() {
                 <td className="p-4 flex gap-3">
                   <button
                      onClick={() =>{
-                          navigate(`/admin/items/edit`)
+                          navigate(`/admin/items/edit`,{state:product})
                      }}
                     className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded">
                   
