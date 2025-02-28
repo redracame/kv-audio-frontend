@@ -38,7 +38,7 @@ const sampleArr = [
 
 export default function AdminItemsPage() {
   const [items, setItems] = useState(sampleArr);
-
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
