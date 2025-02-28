@@ -1,16 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 export default function UpdateItemPage() {
-    const [productKey, setProductKey] = useState("");
-    const [productName, setProductName] = useState("");
-    const [productPrice, setProductPrice] = useState(0);
-    const [productCategory, setProductCategory] = useState("audio");
-    const [productDimensions, setProductDimensions] = useState("");
-    const [productDescription, setProductDescription] = useState("");
+    const location = useLocation()
+
+    console.log(location)
+
+    const [productKey, setProductKey] = useState(location.state.key);
+    const [productName, setProductName] = useState(location.state.name);
+    const [productPrice, setProductPrice] = useState(location.state.price);
+    const [productCategory, setProductCategory] = useState(location.state.category);
+    const [productDimensions, setProductDimensions] = useState(location.state.dimensions);
+    const [productDescription, setProductDescription] = useState(location.state.description);
     const navigate = useNavigate()
+    
     
     async function handleAddItem(){
         console.log(productKey, productName,productPrice,productCategory,productDimensions,productDescription);
