@@ -23,7 +23,7 @@ export default function UpdateItemPage() {
 
           if(token){
               try{
-              const result= await axios.put("http://localhost:3000/api/products" + productKey,{
+              const result= await axios.put("http://localhost:3000/api/products/" + productKey,{
                      
                      name :productName,
                      price : productPrice,
@@ -99,7 +99,7 @@ export default function UpdateItemPage() {
                     placeholder="Product Description" 
                     className="border p-2 w-full"
                 />
-                <button onClick={handleAddItem} className="bg-blue-500 text-white p-2 w-full rounded">Add</button>
+                <button onClick={handleAddItem} className="bg-blue-500 text-white p-2 w-full rounded">Update Item</button>
                 <button onClick={()=>{ navigate("/admin/items")}} className="bg-red-500 text-white p-2 w-full rounded">Cancel</button>
             </div>
         </div>
