@@ -56,6 +56,7 @@ export default function UpdateItemPage() {
             <h1 className="text-lg font-bold mb-4">Update Item</h1>
             <div className="w-[400px] border  flex flex-col items-center p-4 gap-2 rounded-lg shadow-md">
                 <input 
+                    disabled
                     onChange={(e) => setProductKey(e.target.value)} 
                     value={productKey} 
                     type="text" 
