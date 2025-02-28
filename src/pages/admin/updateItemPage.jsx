@@ -47,9 +47,9 @@ export default function UpdateItemPage() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col items-center">
-            <h1>Add Items</h1>
-            <div className="w-[400px] border flex flex-col items-center p-4 gap-2">
+        <div className="w-full h-full flex flex-col items-center p-4">
+            <h1 className="text-lg font-bold mb-4">Update Item</h1>
+            <div className="w-[400px] border  flex flex-col items-center p-4 gap-2 rounded-lg shadow-md">
                 <input 
                     onChange={(e) => setProductKey(e.target.value)} 
                     value={productKey} 
