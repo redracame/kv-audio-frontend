@@ -92,7 +92,7 @@ export default function UpdateItemPage() {
                     placeholder="Product Dimensions" 
                     className="border p-2 w-full"
                 />
-                <input 
+                <textarea 
                     onChange={(e) => setProductDescription(e.target.value)} 
                     value={productDescription} 
                     type="text" 

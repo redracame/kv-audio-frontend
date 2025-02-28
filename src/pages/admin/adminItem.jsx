@@ -3,41 +3,10 @@ import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 
-const sampleArr = [
-  {
-    key: "prd001",
-    name: "Wireless Headphones",
-    price: 150,
-    category: "Electronics",
-    dimensions: "20x15x5 cm",
-    description: "High-quality wireless headphones with noise cancellation.",
-    availability: "In Stock",
-    image: ["https://source.unsplash.com/600x400/?headphones"],
-  },
-  {
-    key: "prd002",
-    name: "Gaming Mouse",
-    price: 50,
-    category: "Accessories",
-    dimensions: "12x6x4 cm",
-    description: "Ergonomic gaming mouse with RGB lighting and adjustable DPI.",
-    availability: "In Stock",
-    image: ["https://source.unsplash.com/600x400/?mouse"],
-  },
-  {
-    key: "prd003",
-    name: "Mechanical Keyboard",
-    price: 100,
-    category: "Accessories",
-    dimensions: "45x15x4 cm",
-    description: "RGB backlit mechanical keyboard with blue switches.",
-    availability: "Out of Stock",
-    image: ["https://source.unsplash.com/600x400/?keyboard"],
-  },
-];
+
 
 export default function AdminItemsPage() {
-  const [items, setItems] = useState(sampleArr);
+  const [items, setItems] = useState([]);//methanata empty array ekak dhenna items nathi ptan gannakota nisa
   const [itemsLoaded , setItemsLoaded] = useState(false);
   const navigate = useNavigate()
   
