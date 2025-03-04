@@ -11,7 +11,20 @@ export default function RegisterPage() {
   function handleRegister(e) {
     e.preventDefault();
     console.log("Registering with:", { email, password, firstName, address, phone });
-  }
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/Users/`,{
+
+        email : firstName,
+        lastName : lastName,
+        password : password,
+        address : address,
+        phone : phone
+    }).then((res)=>{
+        console.log(res)
+    }).catch((err)=>{
+        toast.error(err.response.data.error);
+        
+    })
+  };
 
   return (
     <div className="bg-picture h-screen flex items-center justify-center">
