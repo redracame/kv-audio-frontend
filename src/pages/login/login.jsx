@@ -13,9 +13,9 @@ export default function LoginPage() {
   function handleOneSubmit(e){
     e.preventDefault()
     console.log(email, password)
-    const backendurl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-    axios.post(backendurl+"/api/Users/login" ,
+    axios.post(`${backendUrl}/api/Users/login`,
     {
        email : email,
        password : password
