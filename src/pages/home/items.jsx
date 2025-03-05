@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import ProductCard from "../../components/productCard"
 
 export default function Items() {
      const[state,setState] = useState("loading")// loading,success,error
@@ -30,7 +31,7 @@ export default function Items() {
      state=="success" &&
      items.map((item) => {
         return(
-            <h1 key={item.key}>{item.name}</h1>
+            <ProductCard key={item.key} item={item}/>
         )
      })
 } 
