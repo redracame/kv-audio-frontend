@@ -2,7 +2,7 @@ export default function ProductCard(props) {
      const item = props.item;
    
      return (
-       <div className="max-w-[200px] w-full bg-white rounded-lg shadow-lg overflow-hidden">
+       <div className="max-w-[200px] w-full bg-white rounded-lg shadow-lg overflow-hidden relative">
          {/* Image */}
          <img 
            src={item.image[0]} 
@@ -28,9 +28,12 @@ export default function ProductCard(props) {
            </p>
    
            {/* Button to Buy (or see more details) */}
-           <button className="mt-3 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none">
-             Buy Now
+           <div className=" flex justify-center h-full p-4 border-t border-gray-200  ">
+            <button className="w-[90%] bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200 absolute mx-auto bottom-3">
+              Buy Now
            </button>
+           </div>
+
          </div>
        </div>
      );
