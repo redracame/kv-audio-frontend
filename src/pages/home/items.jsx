@@ -1,18 +1,40 @@
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function Items() {
+     const[state,setState] = useState("loading")// loading,success,error
+     const [items, setItems] = useState([]) //empty array ekak dhama apita wenadha wage sample array we don't use we directly connect backend
+
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`)
             .then((res) => {
-                console.log(res.data) 
+                 console.log(res.data)
+                setItems(res.data)//respond eke thiyanna data tika mekata send karanna
+               setState("success")
+            }).catch((err)=>{
+                toast.error(err?.response?.data?.error||"An error occured")
+                setState("error")
             })
            
     }, [])
 
     return (
-        <div>
-            <h1>Items</h1>
+        <div className="w-full h-full flex flex-wrap justify-center pt-[50px]">
+            {
+                state=="loading" &&
+                <div className="w-full h-full flex justify-center items-center">
+                    <div className="w-[50px] h-[50px] border-4 rounded-full border-t-fuchsia-600 animate-spin"></div>
+                </div>
+}
+{
+     state=="success" &&
+     items.map((item) => {
+        return(
+            <h1 key={item.key}>{item.name}</h1>
+        )
+     })
+} 
+            
         </div>
     )
 }
