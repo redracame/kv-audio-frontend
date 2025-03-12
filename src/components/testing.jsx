@@ -1,4 +1,6 @@
 import { useState } from "react";
+import mediaUpload from "../utils/mediaUpload";
+
 
 export default function Testing(){
 const [file,setFile] = useState(null)
@@ -6,6 +8,7 @@ const [file,setFile] = useState(null)
 
 function UploadFile() {
   console.log(file)
+  mediaUpload(file)
 }  
 
     return(
