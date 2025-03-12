@@ -7,8 +7,10 @@ const [file,setFile] = useState(null)
 
 
 function UploadFile() {
-  console.log(file)
-  mediaUpload(file)
+  console.log(file.name)
+  mediaUpload(file).then((url)=>{
+      console.log(url)  //api me dapu funtion eka onna thanakadi file upload karanna use karanna pulluwan 
+  })
 }  
 
     return(

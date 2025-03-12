@@ -18,7 +18,9 @@ export default function mediaUpload(file){
           upsert: false, 
       }).then(()=>{
           const publicUrl =supabase.storage.from("images").getPublicUrl(fileName).data.publicUrl;
-          console.log(publicUrl)
+          resolve(publicUrl)
+      }).catch(()=>{
+         reject("Error uploading file")
       })
 
        });
