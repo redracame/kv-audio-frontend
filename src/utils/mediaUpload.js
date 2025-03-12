@@ -6,6 +6,9 @@ const supabase = createClient(supabase_url,anon_key)
 
 export default function mediaUpload(file){
        return new Promise((resolve, reject)=>{
+        if(file == null){
+            reject("No file selected")
+        }
         
         const timestamp = new Date().getTime();
         const fileName = timestamp+file.name
