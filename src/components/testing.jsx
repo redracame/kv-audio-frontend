@@ -4,7 +4,9 @@ export default function Testing(){
 const [file,setFile] = useState(null)
 
 
-
+function UploadFile() {
+  console.log(file)
+}  
 
     return(
       <div className="w-full flex flex-col justify-center items-center bg-gray-100  h-screen">
