@@ -10,6 +10,7 @@ export default function AddItemPage() {
     const [productCategory, setProductCategory] = useState("audio");
     const [productDimensions, setProductDimensions] = useState("");
     const [productDescription, setProductDescription] = useState("");
+    const [productImages, setProductImages] =useState([])
     const navigate = useNavigate();
     
     async function handleAddItem() {
@@ -78,12 +79,14 @@ export default function AddItemPage() {
                     placeholder="Product Dimensions"
                     className="border p-2 w-full rounded text-black bg-white placeholder-gray-500"
                 />
+
                 <textarea
                     onChange={(e) => setProductDescription(e.target.value)}
                     value={productDescription}
                     placeholder="Product Description"
                     className="border p-2 w-full rounded text-black bg-white placeholder-gray-500"
                 />
+                <input type="file" multiple onChange={(e)=>{setProductImages(e.target.files)}} className="w=full p-2 bordder rounded"/>
                 <button onClick={handleAddItem} className="bg-blue-500 text-white p-2 w-full rounded hover:bg-blue-600">
                     Add
                 </button>
