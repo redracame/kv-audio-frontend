@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddItemPage() {
     const [productKey, setProductKey] = useState("");
@@ -14,18 +15,42 @@ export default function AddItemPage() {
     const navigate = useNavigate();
     
     async function handleAddItem() {
+        const promises =[]
+
+        for(let i=0; i<productImages.length; i++){
+        console.log(productImages[i])
+          const promises = mediaUpload(productImages[i])
+           promises.push(promises);
+
+
+        }
+
+       
+
         console.log(productKey, productName, productPrice, productCategory, productDimensions, productDescription);
         const token = localStorage.getItem("token");
 
         if (token) {
             try {
+
+                //Promise.all(promises).then((result)=>{
+               //     console.log(result)
+               // }).catch((err)=>{
+             //       toast.error(err)
+             //   })
+
+
+                     
+             const imageUrls =await Promise.all(process);
+
                 const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
                     key: productKey,
                     name: productName,
                     price: productPrice,
                     category: productCategory,
                     dimensions: productDimensions,
-                    description: productDescription
+                    description: productDescription,
+                    image :imageUrls,
                 }, {
                     headers: { Authorization: "Bearer " + token }
                 });
@@ -86,7 +111,20 @@ export default function AddItemPage() {
                     placeholder="Product Description"
                     className="border p-2 w-full rounded text-black bg-white placeholder-gray-500"
                 />
-                <input type="file" multiple onChange={(e)=>{setProductImages(e.target.files)}} className="w=full p-2 bordder rounded"/>
+               <div className="w-full flex items-center">
+    <input 
+        type="file" 
+        multiple 
+        onChange={(e) => {
+            setProductImages(Array.from(e.target.files)); // Convert FileList to Array
+        }} 
+        className="p-2 border rounded"
+    />
+    <span className="ml-2 text-gray-600">
+        {productImages.length > 0 ? `${productImages.length} files` : ""}
+    </span>
+</div>
+
                 <button onClick={handleAddItem} className="bg-blue-500 text-white p-2 w-full rounded hover:bg-blue-600">
                     Add
                 </button>
