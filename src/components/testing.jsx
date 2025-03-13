@@ -5,15 +5,15 @@ export default function Testing() {
     const [files, setFiles] = useState([]);
 
     function UploadFile() {
-        // Log the file names
-        files.forEach((file) => {
-            console.log(file.name);
-        });
+        if (files.length === 0) {
+            console.log("No files selected.");
+            return;
+        }
 
-        // Upload each file using the mediaUpload function
         files.forEach((file) => {
+            console.log("Uploading file:", file.name);
             mediaUpload(file).then((url) => {
-                console.log(url); // Log the uploaded file's URL
+                console.log("File uploaded to:", url);
             });
         });
     }
@@ -21,12 +21,18 @@ export default function Testing() {
     return (
         <div className="w-full flex flex-col justify-center items-center bg-gray-100 h-screen">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-                <input
-                    type="file"
-                    multiple
-                    onChange={(e) => setFiles(Array.from(e.target.files))}
-                    className="mb-4"
-                />
+            <input
+    type="file"
+    multiple// ✅ Enables selecting multiple files
+    accept="image/*,application/pdf,.doc,.docx,.xlsx,.mp3" // ✅ Ensures different file types are selectable
+    onChange={(e) => {
+        const selectedFiles = Array.from(e.target.files || []); // Convert FileList to Array safely
+        console.log("Selected files:", selectedFiles);
+        setFiles(selectedFiles);
+    }}
+    className="mb-4"
+/>
+
                 <button
                     onClick={UploadFile}
                     className="w-[200px] h-[50px] bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-150"
