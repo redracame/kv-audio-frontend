@@ -11,21 +11,22 @@ export default function AddItemPage() {
     const [productCategory, setProductCategory] = useState("audio");
     const [productDimensions, setProductDimensions] = useState("");
     const [productDescription, setProductDescription] = useState("");
-    const [productImages, setProductImages] =useState([])
+    const [productImages, setProductImages] = useState([])
     const navigate = useNavigate();
-    
-    async function handleAddItem() {
-        const promises =[]
 
-        for(let i=0; i<productImages.length; i++){
-        console.log(productImages[i])
-          const promises = mediaUpload(productImages[i])
-           promises.push(promises);
+    async function handleAddItem() {
+        const promises = []
+        console.log(productImages.length)
+        for (let i = 0; i < productImages.length; i++) {
+
+            console.log(productImages[i])
+            const promise = mediaUpload(productImages[i])
+            promises.push(promise);
 
 
         }
 
-       
+
 
         console.log(productKey, productName, productPrice, productCategory, productDimensions, productDescription);
         const token = localStorage.getItem("token");
@@ -34,14 +35,14 @@ export default function AddItemPage() {
             try {
 
                 //Promise.all(promises).then((result)=>{
-               //     console.log(result)
-               // }).catch((err)=>{
-             //       toast.error(err)
-             //   })
+                //     console.log(result)
+                // }).catch((err)=>{
+                //       toast.error(err)
+                //   })
 
 
-                     
-             const imageUrls =await Promise.all(process);
+
+                const imageUrls = await Promise.all(promises);
 
                 const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
                     key: productKey,
@@ -50,7 +51,7 @@ export default function AddItemPage() {
                     category: productCategory,
                     dimensions: productDimensions,
                     description: productDescription,
-                    image :imageUrls,
+                    image: imageUrls,
                 }, {
                     headers: { Authorization: "Bearer " + token }
                 });
@@ -111,19 +112,19 @@ export default function AddItemPage() {
                     placeholder="Product Description"
                     className="border p-2 w-full rounded text-black bg-white placeholder-gray-500"
                 />
-               <div className="w-full flex items-center">
-    <input 
-        type="file" 
-        multiple 
-        onChange={(e) => {
-            setProductImages(Array.from(e.target.files)); // Convert FileList to Array
-        }} 
-        className="p-2 border rounded"
-    />
-    <span className="ml-2 text-gray-600">
-        {productImages.length > 0 ? `${productImages.length} files` : ""}
-    </span>
-</div>
+                <div className="w-full flex items-center">
+                    <input
+                        type="file"
+                        multiple
+                        onChange={(e) => {
+                            setProductImages(Array.from(e.target.files)); // Convert FileList to Array
+                        }}
+                        className="p-2 border rounded"
+                    />
+                    <span className="ml-2 text-gray-600">
+                        {productImages.length > 0 ? `${productImages.length} files` : ""}
+                    </span>
+                </div>
 
                 <button onClick={handleAddItem} className="bg-blue-500 text-white p-2 w-full rounded hover:bg-blue-600">
                     Add
